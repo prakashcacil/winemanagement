@@ -9,16 +9,10 @@ pipeline {
            }
    }
     stage('Maven install') {
-
       withMaven(
-
-          maven: 'Maven_Home'
-
-        ) {
-
-          sh "mvn -Dmaven.test.failure.ignore=true package"
-
-        }
+        maven: 'Maven_Home') {
+        sh "mvn -Dmaven.test.failure.ignore=true package"
+      }
 
       post {
         success {
