@@ -12,11 +12,8 @@ pipeline {
 
       steps {
         // Run Maven on a Unix agent.
-        withMaven(
-          maven: 'Maven_Home'
-        ) {
+     
           sh "mvn -Dmaven.test.failure.ignore=true package"
-        }
       }
 
       post {
