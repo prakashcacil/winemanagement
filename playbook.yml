@@ -1,0 +1,7 @@
+- name: Download and start Docker container
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Start Docker container
+      command: docker run -d --name  ansible-docker-container -p 8081:8080 test01:latest
