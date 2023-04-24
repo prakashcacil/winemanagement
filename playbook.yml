@@ -1,7 +1,20 @@
-- name: Download and start Docker container
-  hosts: all
+hosts: all
   become: true
 
   tasks:
+
     - name: Start Docker container
-      command: docker run -d --name  ansible-docker-container -p 8081:8080 test01:latest
+      command: docker stop  ansible-docker-container
+      ignore_errors: yes
+
+    - name: Start Docker container
+      command: docker rm ansible-docker-container
+      ignore_errors: yes
+
+    - name: Build Docker Image
+      command: docker build -t prakash:001 .
+      args:
+        chdir: /opt/docker
+
+    - name: Start Docker container
+      command: docker run -d --name  ansible-docker-container -p 8081:8081 prakash:001
